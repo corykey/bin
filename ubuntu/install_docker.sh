@@ -11,3 +11,8 @@ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E8
 
 apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual \
     && apt-get -y install docker-engine
+
+apt-get -y install python-pip && pip install docker-compose
+
+curl -L https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-`uname -s`-`uname -m` > /usr/local/bin/docker-machine \
+    && chmod +x /usr/local/bin/docker-machine
