@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "ARTACK/debian-jessie"
+  config.vm.box_url = "https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2", "--ioapic", "on"]
+  end
+
+  # config.vm.provision "shell", path: "master/install_master.sh"
+
+  config.vm.network :forwarded_port, guest: 2181, host: 2181   # Marathon
+  config.vm.network :forwarded_port, guest: 5050, host: 5050   # Mesos View
+
+end
